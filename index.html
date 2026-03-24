@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Muhammed Shahid S — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #f5f0e8; --ink: #1a1a2e; --rust: #c0392b;
+      --gold: #d4a017; --sage: #7a9e7e; --muted: #8a8078;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--ink); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: flex-end; padding: 22px 60px; mix-blend-mode: difference; }
+    nav a { color: var(--cream); text-decoration: none; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; margin-left: 28px; transition: opacity 0.2s; }
+    nav a:hover { opacity: 0.5; }
+
+    /* HERO */
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
+    .hero-left { background: var(--ink); display: flex; flex-direction: column; justify-content: center; padding: 80px 60px; position: relative; animation: slideInLeft 1s ease forwards; }
+    @keyframes slideInLeft { from { transform: translateX(-40px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    .hero-left::after { content: ''; position: absolute; right: -1px; top: 0; bottom: 0; width: 60px; background: var(--cream); clip-path: polygon(100% 0, 100% 100%, 0 100%); }
+    .tag { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 22px; animation: fadeUp 1s ease 0.2s both; }
+    .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 5vw, 4.2rem); color: var(--cream); line-height: 1.1; animation: fadeUp 1s ease 0.4s both; }
+    .hero-name em { color: var(--gold); font-style: italic; }
+    .hero-tagline { margin-top: 20px; color: var(--muted); font-size: 0.95rem; line-height: 1.75; max-width: 360px; animation: fadeUp 1s ease 0.6s both; }
+    .hero-links { margin-top: 36px; display: flex; gap: 14px; animation: fadeUp 1s ease 0.8s both; }
+    .btn { display: inline-block; padding: 11px 24px; border: 1.5px solid var(--gold); color: var(--gold); text-decoration: none; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; transition: all 0.3s ease; }
+    .btn:hover { background: var(--gold); color: var(--ink); }
+    .btn-fill { background: var(--gold); color: var(--ink); }
+    .btn-fill:hover { background: transparent; color: var(--gold); }
+    .hero-right { display: flex; align-items: center; justify-content: center; padding: 80px 60px; animation: slideInRight 1s ease forwards; }
+    @keyframes slideInRight { from { transform: translateX(40px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    .avatar-wrapper { position: relative; width: 280px; height: 340px; }
+    .avatar-frame { width: 100%; height: 100%; border: 2px solid var(--gold); overflow: hidden; }
+    .avatar-placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, #e8ddd0, #c9bfb3); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
+    .avatar-placeholder svg { width: 64px; height: 64px; opacity: 0.35; }
+    .avatar-placeholder span { font-size: 10px; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
+    .avatar-deco { position: absolute; bottom: -14px; right: -14px; width: 100%; height: 100%; border: 2px solid var(--sage); z-index: -1; }
+    .scroll-hint { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--muted); font-size: 10px; letter-spacing: 3px; text-transform: uppercase; animation: bounce 2s infinite; }
+    @keyframes bounce { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+    @keyframes fadeUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+    /* SECTION BASE */
+    section { padding: 88px 80px; }
+    .section-label { font-size: 10px; letter-spacing: 5px; text-transform: uppercase; color: var(--rust); margin-bottom: 10px; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); color: var(--ink); line-height: 1.2; margin-bottom: 44px; }
+
+    /* ABOUT */
+    #about { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: start; }
+    .about-sidebar { position: sticky; top: 40px; }
+    .about-body p { font-size: 1.05rem; line-height: 1.9; color: #444; margin-bottom: 16px; }
+    .stats-row { display: flex; gap: 40px; margin-top: 32px; padding-top: 32px; border-top: 1px solid #ddd; }
+    .stat h3 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--rust); }
+    .stat p { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin: 0 !important; }
+
+    /* EDUCATION */
+    #education { background: var(--ink); color: var(--cream); }
+    #education .section-title { color: var(--cream); }
+    .timeline { position: relative; padding-left: 40px; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--gold); opacity: 0.35; }
+    .timeline-item { position: relative; margin-bottom: 44px; opacity: 0; transform: translateX(-20px); transition: all 0.6s ease; }
+    .timeline-item.visible { opacity: 1; transform: translateX(0); }
+    .timeline-item::before { content: ''; position: absolute; left: -44px; top: 6px; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+    .timeline-year { font-size: 11px; letter-spacing: 3px; color: var(--gold); margin-bottom: 6px; text-transform: uppercase; }
+    .timeline-degree { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--cream); margin-bottom: 4px; }
+    .timeline-school { color: var(--muted); font-size: 0.9rem; }
+
+    /* SKILLS */
+    #skills { background: #eee9df; }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 18px; }
+    .skill-card { background: var(--cream); border: 1px solid #ddd; padding: 22px 26px; transition: all 0.3s ease; position: relative; overflow: hidden; }
+    .skill-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--gold); transform: scaleY(0); transition: transform 0.3s ease; transform-origin: bottom; }
+    .skill-card:hover { transform: translateY(-4px); box-shadow: 0 14px 28px rgba(0,0,0,0.07); }
+    .skill-card:hover::before { transform: scaleY(1); }
+    .skill-name { font-size: 0.93rem; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+    .skill-level { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+
+    /* PROJECTS */
+    #projects { }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 24px; }
+    .project-card { border: 1px solid #ddd; padding: 30px 26px; background: #faf8f4; transition: all 0.3s ease; opacity: 0; transform: translateY(16px); }
+    .project-card.visible { opacity: 1; transform: translateY(0); }
+    .project-card:hover { box-shadow: 0 18px 36px rgba(0,0,0,0.08); transform: translateY(-4px); }
+    .project-tag { display: inline-block; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--rust); margin-bottom: 12px; }
+    .project-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--ink); margin-bottom: 10px; line-height: 1.3; }
+    .project-desc { font-size: 0.88rem; line-height: 1.75; color: #555; }
+    .project-badge { display: inline-block; margin-top: 14px; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--sage); border: 1px solid var(--sage); padding: 3px 9px; }
+
+    /* ACHIEVEMENTS */
+    #achievements { background: var(--ink); color: var(--cream); text-align: center; }
+    #achievements .section-title { color: var(--cream); }
+    .achievement-box { border: 1px solid rgba(212,160,23,0.3); padding: 40px 48px; max-width: 660px; margin: 0 auto; }
+    .achievement-box p { font-size: 1.05rem; line-height: 1.85; color: #bbb; }
+    .quote-mark { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--gold); line-height: 0.5; display: block; margin-bottom: 20px; }
+
+    /* HOBBIES */
+    #hobbies { background: #eee9df; }
+    .hobbies-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 18px; }
+    .hobby-card { background: var(--cream); border: 1px solid #ddd; padding: 30px 18px; text-align: center; transition: all 0.3s ease; position: relative; overflow: hidden; }
+    .hobby-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--gold); transform: scaleX(0); transition: transform 0.3s ease; }
+    .hobby-card:hover { transform: translateY(-5px); box-shadow: 0 14px 28px rgba(0,0,0,0.07); }
+    .hobby-card:hover::before { transform: scaleX(1); }
+    .hobby-icon { font-size: 1.9rem; margin-bottom: 10px; }
+    .hobby-name { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink); }
+
+    /* CONTACT */
+    #contact { background: var(--ink); color: var(--cream); text-align: center; }
+    #contact .section-title { color: var(--cream); }
+    .contact-email { font-family: 'Playfair Display', serif; font-size: clamp(0.95rem, 2vw, 1.35rem); color: var(--gold); margin-bottom: 28px; word-break: break-all; }
+    .contact-links { display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; }
+
+    /* FOOTER */
+    footer { background: var(--cream); border-top: 1px solid #ddd; padding: 36px 80px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--ink); }
+    .footer-copy { font-size: 11px; color: var(--muted); letter-spacing: 1px; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-left::after { display: none; }
+      .hero-right { display: none; }
+      section { padding: 56px 28px; }
+      #about { grid-template-columns: 1fr; gap: 28px; }
+      footer { flex-direction: column; gap: 14px; text-align: center; padding: 28px; }
+      nav { padding: 18px 24px; }
+    }
+   
+
+/* 👇 PASTE HERE (THIS EXACT SPOT) */
+#education {
+  position: relative;
+  overflow: hidden;
+}
+
+.edu-bg-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: auto;
+  width: 50%;
+  height: 100%;
+  background: url('edu.jpeg') no-repeat center;
+  background-size: cover;
+  opacity: 0.3;
+  z-index: 0;
+}
+
+#education .timeline,
+#education .section-label,
+#education .section-title {
+  position: relative;
+  z-index: 1;
+}
+
+/* 👆 END HERE */
+
+</style>
+</head>
+<body>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <p class="tag">Personal Portfolio</p>
+      <h1 class="hero-name">Muhammed<br><em>Shahid S</em></h1>
+      <p class="hero-tagline">
+        Geology Graduate &amp; Data Science Student<br>
+        Passionate about GIS, Remote Sensing &amp; Spatial Data Analysis.
+      </p>
+      <div class="hero-links">
+        <a href="mailto:muhammedshahids.ds25@duk.ac.in" class="btn btn-fill">Get in Touch</a>
+        <a href="#about" class="btn">Learn More</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="avatar-wrapper">
+        <div class="avatar-frame">
+          <!-- Replace with your photo: <img src="photo.jpg" style="width:100%;height:100%;object-fit:cover;" alt="Muhammed Shahid S"> -->
+          <img src="photo.jpg" style="width:100%; height:100%; object-fit:cover;" alt="Muhammed Shahid S">
+        </div>
+        <div class="avatar-deco"></div>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <svg width="14" height="22" viewBox="0 0 16 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="1" y="1" width="14" height="22" rx="7"/>
+        <circle cx="8" cy="6" r="2" fill="currentColor"/>
+      </svg>
+      Scroll
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-sidebar">
+      <p class="section-label">01 — About</p>
+      <h2 class="section-title">Hello,<br>I'm Shahid.</h2>
+    </div>
+    <div class="about-body">
+      <p>
+        I'm a geology graduate with a growing passion for data science and geospatial technologies.
+        I completed my Plus Two in Bio Science from Mayyanad Higher Secondary School (2020),
+        and went on to complete a B.Sc in Geology &amp; Digital Survey from Fatima Mata National College, Kollam (2025).
+      </p>
+      <p>
+        I'm currently pursuing an M.Sc in Data Science &amp; Geoinformatics at Digital University Kerala.
+        My interests lie at the intersection of GIS, remote sensing, and data analysis — using spatial data
+        to understand and solve real-world environmental and geographical challenges.
+      </p>
+      <div class="stats-row">
+        <div class="stat"><h3>3+</h3><p>Projects</p></div>
+        <div class="stat"><h3>2</h3><p>Degrees</p></div>
+        <div class="stat"><h3>∞</h3><p>Curiosity</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="edu-bg-image"></div>
+    <p class="section-label">02 — Education</p>
+    <h2 class="section-title">Academic<br><em style="font-style:italic">Journey</em></h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <p class="timeline-year">2025 — Present</p>
+        <h3 class="timeline-degree">M.Sc Data Science &amp; Geoinformatics</h3>
+        <p class="timeline-school">Digital University Kerala (DUK) · Thiruvananthapuram</p>
+      </div>
+      <div class="timeline-item">
+        <p class="timeline-year">2022 — 2025</p>
+        <h3 class="timeline-degree">B.Sc Geology &amp; Digital Survey</h3>
+        <p class="timeline-school">Fatima Mata National College · Kollam</p>
+      </div>
+      <div class="timeline-item">
+        <p class="timeline-year">2018 — 2020</p>
+        <h3 class="timeline-degree">Plus Two — Bio Science</h3>
+        <p class="timeline-school">Mayyanad Higher Secondary School · Kollam</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="section-label">03 — Skills</p>
+    <h2 class="section-title">Technical<br>Toolkit</h2>
+    <div class="skills-grid">
+      <div class="skill-card"><p class="skill-name">GIS &amp; Spatial Analysis</p><p class="skill-level">QGIS · Intermediate</p></div>
+      <div class="skill-card"><p class="skill-name">Remote Sensing</p><p class="skill-level">Satellite Data · Beginner–Intermediate</p></div>
+      <div class="skill-card"><p class="skill-name">Python</p><p class="skill-level">Pandas · NumPy · Basic Analysis</p></div>
+      <div class="skill-card"><p class="skill-name">Data Visualization</p><p class="skill-level">Charts &amp; Spatial Maps · Beginner</p></div>
+      <div class="skill-card"><p class="skill-name">Machine Learning</p><p class="skill-level">Conceptual Foundations · Beginner</p></div>
+      <div class="skill-card"><p class="skill-name">Geology &amp; Earth Sciences</p><p class="skill-level">Academic Background · Strong</p></div>
+      <div class="skill-card">
+      <p class="skill-name">Google Cloud Data Analytics</p>
+      <p class="skill-level">Certification · Ongoing</p>
+</div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label">04 — Projects</p>
+    <h2 class="section-title">Work &amp;<br>Research</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <span class="project-tag">GIS · Environment</span>
+        <h3 class="project-title">Urban Heat Island Analysis</h3>
+        <p class="project-desc">A geospatial analysis project using QGIS to study land surface temperature variations and identify urban heat island zones based on land use and land cover changes.</p>
+      </div>
+      <div class="project-card">
+        <span class="project-tag">Remote Sensing · Hydrology</span>
+        <h3 class="project-title">The Snow-to-Flow Initiative</h3>
+        <p class="project-desc">Analyzing snow data using NASA satellite-based passive microwave observations (SWE &amp; AMSR data) to estimate snowmelt and predict water flow for hydrological forecasting.</p>
+        <span class="project-badge">Ongoing</span>
+      </div>
+      <div class="project-card">
+        <span class="project-tag">AI · Space Tech · Hackathon</span>
+        <h3 class="project-title">AI Lunar Rover — DUK InnoFest'25</h3>
+        <p class="project-desc">Participated in DUK InnoFest’25 hackathon and contributed to the concept and research of an AI-based lunar rover, focusing on sensor technologies and autonomous navigation.</p>
+      </div>
+      <div class="project-card">
+        <span class="project-tag">Academic · Geospatial</span>
+        <h3 class="project-title">Additional Academic Projects</h3>
+        <p class="project-desc">Worked on various academic and geospatial analysis projects related to GIS and environmental studies throughout my undergraduate programme.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements">
+    <p class="section-label">05 — Achievements</p>
+    <h2 class="section-title">Growing Every<br>Single Day</h2>
+    <div class="achievement-box">
+      <span class="quote-mark">"</span>
+      <p>Continuously learning and developing skills in data science and geospatial technologies — one project, one dataset, and one challenge at a time.</p>
+    </div>
+  </section>
+
+  <!-- HOBBIES -->
+  <section id="hobbies">
+    <p class="section-label">06 — Hobbies</p>
+    <h2 class="section-title">Beyond the<br>Classroom</h2>
+    <div class="hobbies-grid">
+      <div class="hobby-card"><div class="hobby-icon">📚</div><p class="hobby-name">Reading</p></div>
+      <div class="hobby-card"><div class="hobby-icon">🎵</div><p class="hobby-name">Music</p></div>
+      <div class="hobby-card"><div class="hobby-icon">🎮</div><p class="hobby-name">Gaming</p></div>
+      <div class="hobby-card"><div class="hobby-icon">🏃</div><p class="hobby-name">Running</p></div>
+      <div class="hobby-card"><div class="hobby-icon">✈️</div><p class="hobby-name">Travel</p></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">07 — Contact</p>
+    <h2 class="section-title">Let's<br>Connect</h2>
+    <p class="contact-email">muhammedshahids.ds25@duk.ac.in</p>
+    <div class="contact-links">
+      <a href="mailto:muhammedshahids.ds25@duk.ac.in" class="btn btn-fill">Send an Email</a>
+      <a href="https://github.com/yourusername" target="_blank" class="btn">GitHub</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-name">Muhammed Shahid S</div>
+    <div class="footer-copy">© 2025 · M.Sc Data Science &amp; Geoinformatics · Digital University Kerala</div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.timeline-item, .project-card').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
